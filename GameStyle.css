@@ -40,6 +40,10 @@ input:hover{
     align-items: center;
 }
 
+#backButton2{
+    display: none;
+}
+
 #game, #game h2, #lifes{
     display: flex;
     flex-direction: column;
@@ -83,16 +87,20 @@ input:hover{
 }
 #input{
     margin-right: 5px;
+    margin-left: 5px;
 }
 #submit{
     margin-left: 5px;
+}
+#backButton2{
+    margin-right: 5px;
 }
 #submit:active{
     background-color: rgb(130, 10, 10);
     color: white;
 }
 
-#dead h1 p{
+#dead h1 p, #dead h6{
     display: flex;
     flex-direction: column;
     align-items: center;

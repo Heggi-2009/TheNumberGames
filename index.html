@@ -27,13 +27,15 @@
                 <p id="output">Enter A Number</p>
             </div>
             <div id="inputArea">
+                <input type="submit" value="Back" id="backButton2">
                 <input type="text" id="input">
                 <input type="submit" id="submit">
             </div>
         </div>
         <div id="dead">
             <h1>
-                <p>You Lost</p>
+                <p>You Lost...</p>
+                <h6>...and because you lost you have to refresh the site.</h6>
             </h1>
         </div>
     </body>
@@ -43,6 +45,7 @@
     document.getElementById('dead').style.display = 'none';
     document.getElementById('game').style.display = 'none';
 
+    var progress = 0;
     var lifes = "?";
     var min = {};
     var max = {};
@@ -51,6 +54,7 @@
     var easyButton = document.getElementById('easyButton');
     var mediumButton = document.getElementById('mediumButton');
     var hardButton = document.getElementById('hardButton');
+    var backButton2 = document.getElementById('backButton2');
     var submitButton = document.getElementById('submit');
     var textBox = document.getElementById('input');
     
@@ -78,7 +82,13 @@
         document.getElementById('difficulty').style.display = 'none'
         document.getElementById('game').style.display = 'block'
     })
+    document.getElementById('backButton2').style.display = 'block'
     document.getElementById('lifeOutput').innerHTML = lifes;
+    
+    backButton2.addEventListener('click', function(event){
+        document.getElementById('difficulty').style.display = 'flex'
+        document.getElementById('game').style.display = 'none'
+    })
 
     submitButton.addEventListener('click', function(event){
         if(textBox.value.length != 0){
