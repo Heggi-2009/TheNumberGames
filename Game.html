@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game</title>
+        <link rel="stylesheet" href="GameStyle.css">
+    </head>
+    <header>
+        <h1 id="title">The Number Games</h1>
+    </header>
+    <body>
+        <div id="difficulty">
+            <h2>Choose Your Difficulty!</h2>
+            <div id="difficultyButtons">
+                <input type="submit" value="Easy" id="easyButton" title="Between 0 and 10">
+                <input type="submit" value="Medium" id="mediumButton" title="Between 0 and 25">
+                <input type="submit" value="Hard" id="hardButton" title="Between 0 and 100">
+            </div>
+        </div>
+
+        <div id="game">
+            <h2>Guess The Number!</h2>
+            <div id="lifes">
+                <h6>lifes:</h6><h6 id="lifeOutput"></h6>
+            </div>
+            <div id="outcome">
+                <p id="outcomeText">Outcome:</p>
+                <p id="output">Enter A Number</p>
+            </div>
+            <div id="inputArea">
+                <input type="text" id="input">
+                <input type="submit" id="submit">
+            </div>
+        </div>
+        <div id="dead">
+            <h1>
+                <p>You Lost</p>
+            </h1>
+        </div>
+    </body>
+</html>
+
+<script>
+    document.getElementById('dead').style.display = 'none';
+    document.getElementById('game').style.display = 'none';
+
+    var lifes = "?";
+    var min = {};
+    var max = {};
+    var range = {};
+    var randomNumber = 0;
+    var easyButton = document.getElementById('easyButton');
+    var mediumButton = document.getElementById('mediumButton');
+    var hardButton = document.getElementById('hardButton');
+    var submitButton = document.getElementById('submit');
+    var textBox = document.getElementById('input');
+    
+    easyButton.addEventListener('click', function(event){
+        min = 2
+        max = 5 + 1
+        randomNumber = Math.floor(Math.random() * (10 - 0))
+        lifes = Math.floor(Math.random() * (max - min) + min)
+        document.getElementById('difficulty').style.display = 'none'
+        document.getElementById('game').style.display = 'block'
+    })
+    mediumButton.addEventListener('click', function(event){
+        min = 4
+        max = 7 + 1
+        randomNumber = Math.floor(Math.random() * (25 - 0))
+        lifes = Math.floor(Math.random() * (max - min) + min)
+        document.getElementById('difficulty').style.display = 'none'
+        document.getElementById('game').style.display = 'block'
+    })
+    hardButton.addEventListener('click', function(event){
+        min = 8
+        max = 11 + 1
+        randomNumber = Math.floor(Math.random() * (100 - 0))
+        lifes = Math.floor(Math.random() * (max - min) + min)
+        document.getElementById('difficulty').style.display = 'none'
+        document.getElementById('game').style.display = 'block'
+    })
+    document.getElementById('lifeOutput').innerHTML = lifes;
+
+    submitButton.addEventListener('click', function(event){
+        if(textBox.value.length != 0){
+            if(textBox.value < randomNumber){
+                document.getElementById('output').innerHTML = ' The Random Number Is Bigger!'
+                lifes = lifes - 1
+            }
+            if(textBox.value > randomNumber){
+                document.getElementById('output').innerHTML = ' The Random Number Is Smaller!'
+                lifes = lifes - 1
+            }
+            if(textBox.value == randomNumber){
+                document.getElementById('output').innerHTML = ' You Guessed The Random Number Correctly!'
+            }
+            if(lifes == 0){
+                document.getElementById('game').style.display = 'none'
+                document.getElementById('title').style.display = 'none'
+                document.body.style.backgroundColor = 'black' 
+                document.getElementById('dead').style.display = 'block'
+            }
+        }
+        document.getElementById('lifeOutput').innerHTML = lifes;
+    })
+</script>
